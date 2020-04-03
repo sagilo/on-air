@@ -3,7 +3,7 @@ var express = require('express');
 var execute = require('../checkAndOperateBulb');
 var router = express.Router();
 
-const INTERVAL = 1000 * 60 * 2;
+const INTERVAL = 1000 * process.env.INTERVAL_SECONDS;
 
 /* GET control. */
 router.get('/on', function(req, res, next) {
