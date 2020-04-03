@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <h1>On air</h1>
+  <p class="lead">Make sure everyone know when you are busy</p>
+  {{#if user}}
+    <h4>Welcome {{ user.displayName }}!</h4>
+    {{#if mode}}
+      <p>Service is {{ mode }}</p>
+    {{else}}
+      <p>Service is stopped</p>
+    {{/if}}
+  {{else}}
+    <a href="/auth/signin" class="btn btn-primary btn-large">Click here to sign in</a>
+  {{/if}}
+</div>
