@@ -47,9 +47,9 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 1. Open a browser and browse to `http://localhost:3000`
 1. Sign in
 1. Hit the `Start` button on the top bar
-![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w700.jpg?raw=true "On Air")
 1. As you Teams presence becomes "Busy" (or equivalent), the bulb will turn on in a red light.
-![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/bulb_w700.jpg?raw=true "On Air")
+
+![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w700.jpg?raw=true "On Air")
 
 ## Credits
 The application is based over [this MS Graph training](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp)
