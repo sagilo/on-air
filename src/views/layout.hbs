@@ -56,25 +56,7 @@
                 <i class="fas fa-external-link-alt mr-1"></i>Docs
               </a>
             </li> --}}
-            {{#if presence}}
-              <li class="nav-item" data-turbolinks="false">
-                <a href="/presence" class="nav-link active">
-                {{!-- values here: --}}
-                {{!-- https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-beta --}}
-                <img width="18px" class="rounded-circle align-self-center mr-2" style="width: 15px;" src=
-                  {{#or (eq presence.availability "Available") (eq presence.availability "AvailableIdle") (eq presence.availability "AvailableIdle") }}
-                    "/available_x48.png"
-                  {{else if (or (eq presence.availability "Away") (eq presence.availability "BeRightBack")) }}
-                    "/away_x48.png"
-                  {{else if (or (eq presence.availability "Busy") (eq presence.availability "BusyIdle") (eq presence.availability "DoNotDisturb")) }}
-                    "busy_x48.png"
-                  {{else}}
-                    "status_unknown_x48.png"
-                  {{/or}}
-                    alt="{{ presence.availability }}" >
-                </a>
-              </li>
-            {{/if}}
+            
             {{#if user}}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -83,9 +65,28 @@
                   {{else}}
                     <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
                   {{/if}}
+                  {{#if presence}}
+                    {{!-- values here: --}}
+                    {{!-- https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-beta --}}
+                    <img width="18px" class="rounded-circle align-self-center mr-2 presence" style="width: 16px;" src=
+                      {{#or (eq presence.availability "Available") (eq presence.availability "AvailableIdle") (eq presence.availability "AvailableIdle") }}
+                        "/available_x48.png"
+                      {{else if (or (eq presence.availability "Away") (eq presence.availability "BeRightBack")) }}
+                        "/away_x48.png"
+                      {{else if (or (eq presence.availability "Busy") (eq presence.availability "BusyIdle") (eq presence.availability "DoNotDisturb")) }}
+                        "busy_x48.png"
+                      {{else}}
+                        "status_unknown_x48.png"
+                      {{/or}}
+                        alt="{{ presence.availability }}" >
+                  {{/if}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                   <h5 class="dropdown-item-text mb-0">{{ user.displayName }}</h5>
+                  <p class="dropdown-item-text text-muted mb-0">{{ presence.availability }}</p>
+                  {{#if (isnt presence.activity presence.availability )}}
+                    <p class="dropdown-item-text text-muted mb-0">{{ presence.activity }}</p>
+                  {{/if}}
                   <p class="dropdown-item-text text-muted mb-0">{{ user.email }}</p>
                   <div class="dropdown-divider"></div>
                   <a href="/auth/signout" class="dropdown-item">Sign Out</a>
