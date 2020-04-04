@@ -50,6 +50,12 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
 ![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w700.jpg?raw=true "On Air")
 
+## Done
+Now everything should be running. Feel free to open an issue if you encounter any difficulties
+Code contributions are also welcomed
+
+![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/bulb_w700.jpg?raw=true "On Air")
+
 ## Docker
 Node makes it super easy to turn applications into a docker image
 
