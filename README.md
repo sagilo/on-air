@@ -80,6 +80,6 @@ Code contributions are also welcomed
 The application is based over [this MS Graph training](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp)
 
 ## Other solutions
-[Isaac Levin](https://github.com/isaacrlevin) has a [similar application](https://github.com/isaacrlevin/PresenceLight) for Windows which works with Philips Hue
+[Isaac Levin](https://github.com/isaacrlevin) has a [similar WPF project](https://github.com/isaacrlevin/PresenceLight) for Windows which works with Philips Hue
 
 
