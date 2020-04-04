@@ -43,7 +43,7 @@ module.exports = {
           throw err;
         });
       });
-      req.session.avatar = filename;
+      req.session.avatar = `/${filename}`;
       return filename;
   }
 };
