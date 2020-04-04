@@ -1,5 +1,7 @@
 # On-Air
 
+![Alt text](https://github.com/sagilo/On-Air/blob/master/.github/featured.jpg?raw=true "Title")
+
 ## What is On Air?
 
 A NodeJS solution to broadcast your Microsoft Teams presence to a Yeelight smart bulb. The app uses the [Presence Api](https://docs.microsoft.com/graph/api/presence-get), which is available in [Microsoft Graph](https://docs.microsoft.com/graph/overview), allowing to retrieve your presence. This could potentially allow someone to update the Yeelight light bulb from a remote machine they do not use, as long as it is on the same network.
