@@ -1,6 +1,6 @@
 # On-Air
 
-![Alt text](https://github.com/sagilo/On-Air/blob/master/.github/featured.jpg?raw=true "Title")
+![On air](https://github.com/sagilo/On-Air/blob/master/.github/featured_img.jpg?raw=true "On Air")
 
 ## What is On Air?
 
