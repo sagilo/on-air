@@ -1,6 +1,7 @@
 require('log-timestamp');
-var graph = require('@microsoft/microsoft-graph-client');
 require('isomorphic-fetch');
+var fs = require('fs');
+var graph = require('@microsoft/microsoft-graph-client');
 
 module.exports = {
   getUserDetails: async function(accessToken) {
@@ -10,9 +11,8 @@ module.exports = {
     return user;
   },
 
-  getPresence: async function(accessToken) {
+  getPresence: async function(accessToken, req) {
     const client = getAuthenticatedClient(accessToken);
-
     const presence = await client
       .api('/me/presence')
       .version('beta')
@@ -20,7 +20,31 @@ module.exports = {
       // .orderby('createdDateTime DESC')
       .get();
 
+    if (req && req.session) {
+      req.session.presence = presence;
+    }
     return presence;
+  },
+
+  getPhoto: async function(accessToken, req, path, filename) {
+    const client = getAuthenticatedClient(accessToken);
+    await client
+      .api('/me/photo/$value')
+      .getStream()
+      .then((stream) => {
+        let writeStream = fs.createWriteStream(`${path}/${filename}`);
+        stream.pipe(writeStream).on("error", (err) => {
+          throw err;
+        });
+        writeStream.on("finish", () => {
+          console.log(`Wrote user photo to '${path}/${filename}'`);
+        });
+        writeStream.on("error", (err) => {
+          throw err;
+        });
+      });
+      req.session.avatar = filename;
+      return filename;
   }
 };
 

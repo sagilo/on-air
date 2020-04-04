@@ -13,3 +13,7 @@ li {
   flex-direction: row;
   align-items: center;
 }
+
+.avatar {
+  border-radius: 50%;
+}

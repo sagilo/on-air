@@ -1,9 +1,11 @@
 require('log-timestamp');
 var express = require('express');
-var execute = require('../checkAndOperateBulb');
+var runner = require('../runner');
 var router = express.Router();
 
 const INTERVAL = 1000 * process.env.INTERVAL_SECONDS;
+
+var running = false;
 
 /* GET control. */
 router.get('/on', function(req, res, next) {
@@ -13,42 +15,39 @@ router.get('/on', function(req, res, next) {
     return;
   }
   
-  if (typeof req.session.running == 'undefined') {
-    req.session.running = false;
-    req.session.save();
-  }
-
-  if (req.session.running) {
+  if (running) {
     console.log(`Already running`);
     res.redirect('/');
     return;
   }
 
-  console.log(`Turning on timer`);
-  req.session.running = true;
-  req.session.save();
-  setTimeout(runner, INTERVAL, req);
+  console.log(`Starting service & timer`);
+
+  running = true;
+  req.session.running = running;
+
+  setTimeout(timerFn, INTERVAL, req);
 
   res.redirect('/');
 });
 
-function runner(req) {
-  if (!req.session.running) {
-    console.log(`running was cancelled, not setting new timer`);
+function timerFn(req) {
+  if (!running) {
+    console.log(`service was stopped, not setting new timer`);
     return;
   }
 
-  execute(req);
+  runner.execute(req);
 
   console.log(`Setting new runner to run in ${INTERVAL/1000} seconds`);
-  setTimeout(runner, INTERVAL, req);
+  setTimeout(timerFn, INTERVAL, req);
 }
 
 router.get('/off', function(req, res, next) {
+  running = false;
   req.session.running = false;
-  if (!req.isAuthenticated()) {
-    console.log(`Not authenticated. Redirecting to root`);
-  }
+  
+  console.log('Service & timer stopped');
   res.redirect('/');
 });
 

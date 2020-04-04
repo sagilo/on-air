@@ -25,25 +25,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            {{#if presence}}
-              <li class="nav-item" data-turbolinks="false">
-                <a href="/presence" class="nav-link active">
-                {{!-- values here: --}}
-                {{!-- https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-beta --}}
-                <img width="18px" src=
-                  {{#or (eq presence.availability "Available") (eq presence.availability "AvailableIdle") (eq presence.availability "AvailableIdle") }}
-                    "/status_available_x128.png"
-                  {{else if (or (eq presence.availability "Away") (eq presence.availability "BeRightBack")) }}
-                    "/status_away_x128.png"
-                  {{else if (or (eq presence.availability "Busy") (eq presence.availability "BusyIdle") (eq presence.availability "DoNotDisturb")) }}
-                    "status_busy_x128.png"
-                  {{else}}
-                    "status_unknown_x128.png"
-                  {{/or}}
-                  title="{{ presence.availability }}" alt="{{ presence.availability }}" >
-                </a>
-              </li>
-            {{/if}}
             <li class="nav-item">
               <a href="/" class="nav-link{{#if active.home}} active{{/if}}">Home</a>
             </li>
@@ -75,12 +56,30 @@
                 <i class="fas fa-external-link-alt mr-1"></i>Docs
               </a>
             </li> --}}
+            {{#if presence}}
+              <li class="nav-item" data-turbolinks="false">
+                <a href="/presence" class="nav-link active">
+                {{!-- values here: --}}
+                {{!-- https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-beta --}}
+                <img width="18px" class="rounded-circle align-self-center mr-2" style="width: 15px;" src=
+                  {{#or (eq presence.availability "Available") (eq presence.availability "AvailableIdle") (eq presence.availability "AvailableIdle") }}
+                    "/available_x48.png"
+                  {{else if (or (eq presence.availability "Away") (eq presence.availability "BeRightBack")) }}
+                    "/away_x48.png"
+                  {{else if (or (eq presence.availability "Busy") (eq presence.availability "BusyIdle") (eq presence.availability "DoNotDisturb")) }}
+                    "busy_x48.png"
+                  {{else}}
+                    "status_unknown_x48.png"
+                  {{/or}}
+                    alt="{{ presence.availability }}" >
+                </a>
+              </li>
+            {{/if}}
             {{#if user}}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                  aria-expanded="false">
-                  {{#if user.avatar}}
-                    <img src="{{ user.avatar }}" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  {{#if avatar}}
+                    <img src="{{ avatar }}" class="rounded-circle align-self-center mr-2 avatar" style="width: 32px;">
                   {{else}}
                     <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
                   {{/if}}
