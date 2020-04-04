@@ -46,9 +46,10 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 1. Open a browser and browse to `http://localhost:3000`
 1. Sign in
 1. Hit the `Start` button on the top bar
-1. As you Teams presence becomes "Busy" (or equivalent), the bulb will turn on in a red light.
+1. As you Teams presence becomes "
+" (or equivalent), the bulb will turn on in a red light.
 
-![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w1000.jpg?raw=true "On Air")
+![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w750.jpg?raw=true "On Air")
 
 ## Run as docker image (optional)
 Node makes it super easy to turn applications into a docker image
