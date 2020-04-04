@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET bulb. */
 router.get('/on', async function(req, res, next) {
-  await updateBulb('Busy');
+  await updateBulb(true);
   req.session.mode = 'running';
   req.session.save();
   var params = buildParams(req, { text: 'Turned bulb on' });
@@ -14,7 +14,7 @@ router.get('/on', async function(req, res, next) {
 });
 
 router.get('/off', async function(req, res, next) {
-  await updateBulb('Available');
+  await updateBulb(false);
   req.session.mode = 'stopped';
   req.session.save();
   var params = buildParams(req, { text: 'Turned bulb off' });

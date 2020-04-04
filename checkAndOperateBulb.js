@@ -9,10 +9,6 @@ module.exports = async function execute(req) {
         return;
       }
     
-    let params = {
-        active: { presence: true }
-    };
-
     // Get the access token
     var accessToken;
     try {
@@ -45,7 +41,10 @@ module.exports = async function execute(req) {
     }
 
     try {
-        updateBulb(presence.activity, presence.availability);
+        var availability = presence.availability;
+        const busySet = new Set('Busy', 'BusyIdle', 'DoNotDisturb');
+        var isBusy = busySet.has(availability);
+        updateBulb(isBusy);
     } catch (err) {
         console.error(`Failed to update bulb: ${err}`);
         return;

@@ -4,9 +4,8 @@ const yeelight = require('yeelight-node').Yeelight;
 const RED = [255, 0, 0];
 const bulb = new yeelight({ ip: process.env.BULB_IP, port: 55443 });
 
-module.exports = async function updateBulb(activity, availability) {
-    var power = 'busy'.toUpperCase() === activity.toUpperCase() || 'donotdisturb'.toUpperCase() === activity.toUpperCase();
-    var currentPower = await getPower(bulb);
+module.exports = async function updateBulb(power) {
+    var currentPower = await isOn(bulb);
     if (power === currentPower) {
         console.log(`Bulb is already in required state (${currentPower}), not setting`);
         return;
@@ -20,7 +19,7 @@ module.exports = async function updateBulb(activity, availability) {
     }
 }
 
-async function getPower(bulb) {
+async function isOn(bulb) {
     var response = await bulb.get_prop('power');
     response = JSON.parse(response);
     return response.result[0].toUpperCase() === 'on'.toUpperCase();
