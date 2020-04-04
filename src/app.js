@@ -10,6 +10,8 @@ var flash = require('connect-flash');
 var passport = require('passport');
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 var graph = require('./graph');
+var tokens = require('./tokens');
+
 
 // Configure simple-oauth2
 const oauth2 = require('simple-oauth2').create({
@@ -156,6 +158,50 @@ app.use(function(req, res, next) {
   if (req.user) {
     res.locals.user = req.user.profile;
   }
+  next();
+});
+
+// populate locals for rendering
+app.use(async function(req, res, next) {
+  var mode = 'stopped';
+  var running = false;
+  var avatar;
+  var presence;
+
+  if (req.session) {
+    mode = req.session.running ? 'running' : 'stopped';
+    running = req.session.running ? true : false; // may be undefined
+
+    if (req.user) {
+      var accessToken = await tokens.getAccessToken(req);
+
+      try {
+        presence = await graph.getPresence(accessToken, req);
+      } catch (err) {
+          console.error(`Failed to get presence: ${err}`);
+      }
+
+      avatar = req.session.avatar;
+      if (!avatar) {
+          try {
+              var avatarFilename = 'avatar.jpg';
+              var avatarPath = './src/public/';
+              avatar = await graph.getPhoto(accessToken, req, avatarPath, avatarFilename);
+          } catch (err) {
+              console.error(`Failed to get photo: ${err}`);
+          }
+      }
+    }
+  }
+
+  var params = {
+      running,
+      mode,
+      presence,
+      avatar
+  };
+
+  res.locals = Object.assign(params, res.locals);
   next();
 });
 

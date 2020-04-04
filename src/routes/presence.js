@@ -1,7 +1,6 @@
 require('log-timestamp');
 var express = require('express');
 var tokens = require('../tokens');
-var buildParams = require('../params');
 var graph = require('../graph');
 var router = express.Router();
 
@@ -12,8 +11,7 @@ router.get('/',
       var accessToken = await tokens.getAccessToken(req);
 
       await graph.getPresence(accessToken, req);
-      var params = await buildParams(req);
-      res.render('presence', params);
+      res.render('presence');
     } catch (err) {
       console.error(`Error querying presence: ${err}`);
       req.flash('error_msg', {

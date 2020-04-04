@@ -1,20 +1,17 @@
 require('log-timestamp');
 var express = require('express');
 var updateBulb = require('../bulb');
-var buildParams = require('../params');
 var router = express.Router();
 
 /* GET bulb. */
 router.get('/on', async function(req, res, next) {
   await updateBulb(true);
-  var params = await buildParams(req, { text: 'Turned bulb on' });
-  res.render('control', params);
+  res.render('control', { text: 'Turned bulb on' });
 });
 
 router.get('/off', async function(req, res, next) {
   await updateBulb(false);
-  var params = await buildParams(req, { text: 'Turned bulb off' });
-  res.render('control', params);
+  res.render('control', { text: 'Turned bulb off' });
 });
 
 module.exports = router;
