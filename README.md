@@ -43,7 +43,6 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
     ```Shell
     npm start
     ```
-
 1. Open a browser and browse to `http://localhost:3000`
 1. Sign in
 1. Hit the `Start` button on the top bar
@@ -51,6 +50,22 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
 ![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w700.jpg?raw=true "On Air")
 
+## Docker
+Node makes it super easy to turn applications into a docker image
+
+### To build the docker image
+1. Make sure Docker daemon is running
+1. On your CLI, run the following to create a docker image
+    ```Shell
+    docker build -t on-air .
+    ```
+    
+### To run the docker image
+
+```Shell
+docker run -p 3000:3000 -d on-air
+```
+    
 ## Credits
 The application is based over [this MS Graph training](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp)
 
