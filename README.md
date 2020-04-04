@@ -65,7 +65,7 @@ Node makes it super easy to turn applications into a docker image
 ```Shell
 docker run -p 3000:3000 -d on-air
 ```
-The output is the container ID, use it to view the logs
+The output is the container ID (or look it up by running `docker ps`), use it to view the logs
 ```Shell
 docker logs <ID>
 ```
