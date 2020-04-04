@@ -50,13 +50,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
 ![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/busy_w700.jpg?raw=true "On Air")
 
-## Done
-Now everything should be running. Feel free to open an issue if you encounter any difficulties
-Code contributions are also welcomed
-
-![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/bulb_w700.jpg?raw=true "On Air")
-
-## Docker
+## Run as docker image (optional)
 Node makes it super easy to turn applications into a docker image
 
 ### To build the docker image
@@ -76,6 +70,12 @@ The output is the container ID (or look it up by running `docker ps`), use it to
 docker logs <ID>
 ```
     
+## Done
+Now everything should be running. Feel free to open an issue if you encounter any difficulties
+Code contributions are also welcomed
+
+![Bulb](https://github.com/sagilo/On-Air/blob/master/.github/bulb_w700.jpg?raw=true "On Air")
+
 ## Credits
 The application is based over [this MS Graph training](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp)
 
