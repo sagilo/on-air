@@ -81,6 +81,6 @@ Code contributions are also welcomed
 The application is based over [this MS Graph training](https://github.com/microsoftgraph/msgraph-training-nodeexpressapp)
 
 ## Other solutions
-[Isaac Levin](https://github.com/isaacrlevin) has a [similar WPF project](https://github.com/isaacrlevin/PresenceLight) for Windows which works with Philips Hue
-
-
+* [Isaac Levin](https://github.com/isaacrlevin) has a [similar WPF project](https://github.com/isaacrlevin/PresenceLight) for Windows which works with Philips Hue
+* [Toggle Tasmota Plugs via Bash Scripts based on Camera Status](https://github.com/amenk/OnAirDaemon)
+* [Ruby / C based on air camera status](https://github.com/devkmsg/on-air)
